@@ -8,11 +8,16 @@ services:
   web:
     image: nginx:1.18-alpine
     ports:
-      # - "${NGINX_HOST_HTTP_PORT}:80"
-      - "8080:8080"
-      # - "8080:443"
-      # - "${NGINX_HOST_HTTPS_PORT}:443"
+      - 8080:8080
     volumes:
       - ./backend:/work
       - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf
     working_dir: /work
+
+  db:
+    build: ./infra/mysql
+    volumes:
+      - db-store:/var/lib/mysql
+
+volumes:
+  db-store:
