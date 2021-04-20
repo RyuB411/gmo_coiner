@@ -19,14 +19,14 @@ class CreateCandleSticksTable extends Migration
             $table->string('interval');
             $table->datetime('open_time');
             $table->boolean('line_direction');
-            $table->unsignedDecimal('open_price', 12, 10);
-            $table->unsignedDecimal('close_price', 12, 10);
-            $table->unsignedDecimal('high_price', 12, 10);
-            $table->unsignedDecimal('low_price', 12, 10);
-            $table->float('volume', 12, 10);
+            $table->unsignedDecimal('open_price', 15, 5);
+            $table->unsignedDecimal('close_price', 15, 5);
+            $table->unsignedDecimal('high_price', 15, 5);
+            $table->unsignedDecimal('low_price', 15, 5);
+            $table->double('volume', 15, 5);
             $table->unique(
                 ['symbol', 'interval', 'open_time'],
-                'crypt_interval_time_unique'
+                'symbol_interval_time_unique'
             );
             $table->timestamps();
         });
