@@ -27,7 +27,7 @@ class CandleStickController extends AdminController
         $grid = new Grid(new CandleStick());
 
         $grid->column('id', __('Id'));
-        $grid->column('crypt_type', __('Crypt type'));
+        $grid->column('symbol', __('Symbol'));
         $grid->column('interval', __('Interval'));
         $grid->column('open_time', __('Open time'));
         $grid->column('line_direction', __('Line direction'));
@@ -53,7 +53,7 @@ class CandleStickController extends AdminController
         $show = new Show(CandleStick::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('crypt_type', __('Crypt type'));
+        $show->field('symbol', __('Symbol'));
         $show->field('interval', __('Interval'));
         $show->field('open_time', __('Open time'));
         $show->field('line_direction', __('Line direction'));
@@ -77,7 +77,7 @@ class CandleStickController extends AdminController
     {
         $form = new Form(new CandleStick());
 
-        $form->text('crypt_type', __('Crypt type'));
+        $form->text('symbol', __('Symbol'));
         $form->text('interval', __('Interval'));
         $form->datetime('open_time', __('Open time'))->default(date('Y-m-d H:i:s'));
         $form->switch('line_direction', __('Line direction'));
