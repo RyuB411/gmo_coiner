@@ -15,7 +15,7 @@ class CreateCandleSticksTable extends Migration
     {
         Schema::create('candle_sticks', function (Blueprint $table) {
             $table->id();
-            $table->string('crypt_type');
+            $table->string('symbol');
             $table->string('interval');
             $table->datetime('open_time');
             $table->boolean('line_direction');
@@ -25,7 +25,7 @@ class CreateCandleSticksTable extends Migration
             $table->unsignedDecimal('low_price', 12, 10);
             $table->float('volume', 12, 10);
             $table->unique(
-                ['crypt_type', 'interval', 'open_time'],
+                ['symbol', 'interval', 'open_time'],
                 'crypt_interval_time_unique'
             );
             $table->timestamps();

@@ -10,7 +10,7 @@ class CandleStick extends Model
     use HasFactory;
 
     protected $fillable = [
-        'crypt_type',
+        'symbol',
         'interval',
         'open_time',
         'line_direction',
