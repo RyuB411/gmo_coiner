@@ -230,4 +230,10 @@ return [
 
     ],
 
+    'gmo' => [
+        'public_url' => env('GMO_COIN_API_BASE_URL_PUBLIC'),
+        'public_socket' => env('GMO_COIN_API_WEB_SOCKET_PUBLIC'),
+        'private_url' => env('GMO_COIN_API_BASE_URL_PRIVATE'),
+        'private_socket' => env('GMO_COIN_API_WEB_SOCKET_PRIVATE'),
+    ],
 ];
