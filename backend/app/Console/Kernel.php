@@ -25,8 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command(sprintf('%s %s %s', 'gmoapi:getkline', 'XRP', today()->format('Ymd')))->everyTenMinutes();
-        $schedule->command(sprintf('%s %s', 'gmoapi:getkline', 'XRP'))->cron('0 0,4,8,12,16,20 * * *');
+        // $schedule->command(sprintf('%s %s %s', 'gmoapi:getkline', 'XRP', today()->format('Ymd')))->everyTenMinutes();
+        // $schedule->command(sprintf('%s %s', 'gmoapi:getkline', 'XRP'))->cron('0 0,4,8,12,16,20 * * *');
     }
 
     /**
