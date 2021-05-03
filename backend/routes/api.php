@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/candle_stick/{symbol}', [CandleStickController::class, 'index']);
+
+Route::get('/ticker/{symbol}', [CandleStickController::class, 'ticker']);

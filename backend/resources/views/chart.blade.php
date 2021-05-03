@@ -11,10 +11,10 @@
         <title>Laravel</title>
     </head>
     <body class="antialiased">
-        <div id="app">
-            <candlestick-component></candlestick-component>
+        <div id="app" style="width: 800px;">
+            <ticker-component :crypt-symbol="{{ json_encode($symbol) }}"></ticker-component>
+            <candlestick-component :crypt-symbol="{{ json_encode($symbol) }}"></candlestick-component>
         </div>
         <script src=" {{ mix('js/app.js') }}" ></script>
     </body>
 </html>
-
