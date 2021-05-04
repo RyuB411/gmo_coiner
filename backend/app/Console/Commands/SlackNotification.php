@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Console\Command;
-use Illuminate\Support\Carbon;
 
 class SlackNotification extends Command
 {
@@ -25,8 +24,7 @@ class SlackNotification extends Command
 
     private $client;
     private $message;
-    private $interval_day_list;
-    private $interval_year_list;
+
     /**
      * Create a new command instance.
      *
@@ -37,8 +35,6 @@ class SlackNotification extends Command
         parent::__construct();
         $this->client = new Client();
         $this->url_base = sprintf('%s%s', config('app.gmo.public_url'), 'v1/ticker');
-        
-
     }
 
     /**
