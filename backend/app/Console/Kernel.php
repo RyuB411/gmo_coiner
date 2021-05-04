@@ -24,9 +24,43 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-        // $schedule->command(sprintf('%s %s %s', 'gmoapi:getkline', 'XRP', today()->format('Ymd')))->everyTenMinutes();
-        // $schedule->command(sprintf('%s %s', 'gmoapi:getkline', 'XRP'))->cron('0 0,4,8,12,16,20 * * *');
+        $symbol_list = collect([
+            'BTC_JPY',
+            'ETH_JPY',
+            'BCH_JPY',
+            'LTC_JPY',
+            'XRP_JPY',
+        ]);
+        $daily_interval_list = collect([
+            // '1min',
+            // '5min',
+            // '10min',
+            // '15min',
+            '30min',
+            '1hour',
+        ]);
+        $year_interval_list = collect([
+            '4hour',
+            '8hour',
+            '12hour',
+            '1day',
+            '1week',
+            '1month',
+        ]);
+
+        $symbol_list->each(function($symbol) use ($schedule, $daily_interval_list, $year_interval_list) {
+            $daily_interval_list->each(function($interval) use ($schedule, $symbol) {
+                $schedule->command(sprintf('%s %s %s %s', 'gmoapi:getkline', $symbol, today()->format('Ymd'), $interval))
+                    ->everyTenMinutes();
+            });
+
+            $year_interval_list->each(function($interval) use ($schedule, $symbol) {
+                $schedule->command(sprintf('%s %s %s %s', 'gmoapi:getkline', $symbol, today()->format('Y'), $interval))
+                    ->cron('0 1,5,9,13,17,21 * * *');
+            });
+        });
+
+        $schedule->command('slack:notification')->cron('0 1,5,9,13,17,21 * * *');
     }
 
     /**

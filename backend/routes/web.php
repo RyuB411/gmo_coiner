@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/chart', function () {
-    return view('chart');
+Route::get('/chart/{symbol}', function ($symbol) {
+    return view('chart')->with(['symbol'=> $symbol]);
 });

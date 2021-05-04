@@ -1,6 +1,6 @@
 <!-- https://github.com/ehajri/vue-chartjs-financial/blob/master/src/views/Candlestick.vue -->
 <template>
-  <div class="small">
+  <div class="border">
     <Candlestick :chart-data="datacollection" :options="options" />
   </div>
 </template>
@@ -19,10 +19,13 @@ export default {
   },
   mounted() {
     this.fillData();
+    setInterval(() => {
+      this.fillData();
+    }, 10000);
   },
   methods: {
     async fillData() {
-      const ret = await window.axios.get("/api/candle_stick/XRP")
+      const ret = await window.axios.get('/api/candle_stick/' +  this.cryptSymbol);
       this.datacollection = {
         datasets: [
           {
@@ -34,5 +37,11 @@ export default {
       };
     },
   },
+  props: {
+    cryptSymbol: {
+        type: String,
+        default: 'BTC'
+    }
+  }
 };
 </script>
