@@ -24,37 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $symbol_list = collect([
-            'BTC_JPY',
-            'ETH_JPY',
-            'BCH_JPY',
-            'LTC_JPY',
-            'XRP_JPY',
-        ]);
-        $daily_interval_list = collect([
-            // '1min',
-            // '5min',
-            // '10min',
-            // '15min',
-            '30min',
-            '1hour',
-        ]);
-        $year_interval_list = collect([
-            '4hour',
-            '8hour',
-            '12hour',
-            '1day',
-            '1week',
-            '1month',
-        ]);
-
-        $symbol_list->each(function($symbol) use ($schedule, $daily_interval_list, $year_interval_list) {
-            $daily_interval_list->each(function($interval) use ($schedule, $symbol) {
+        config('const.CRYPT.SYMBOL_LIST')->each(function($symbol) use ($schedule) {
+            config('const.CRYPT.INTERVAL_LIST.DAILY')->each(function($interval) use ($schedule, $symbol) {
                 $schedule->command(sprintf('%s %s %s %s', 'gmoapi:getkline', $symbol, today()->format('Ymd'), $interval))
                     ->everyTenMinutes();
             });
 
-            $year_interval_list->each(function($interval) use ($schedule, $symbol) {
+            config('const.CRYPT.INTERVAL_LIST.YEAR')->each(function($interval) use ($schedule, $symbol) {
                 $schedule->command(sprintf('%s %s %s %s', 'gmoapi:getkline', $symbol, today()->format('Y'), $interval))
                     ->cron('0 1,5,9,13,17,21 * * *');
             });

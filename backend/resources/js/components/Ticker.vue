@@ -1,6 +1,9 @@
 <template>
   <div class="container border">
-    <h1 v-text="ticker.symbol" />
+    <div class="row">
+      <img :src="'/img/' + ticker.symbol + '.jpg'" class="img-circle" width="48" height="48"/>
+      <div class="h1" v-text="ticker.symbol" />
+    </div>
     <div class="h1 font-weight-bold text-center">{{ ticker.close }}</div>
     <div class="h2 font-weight-bold text-center" :class="ticker.after_direction_text">{{ ticker.after_day_value }}（{{ ticker.after_day_ratio }}％）</div>
     <div class="row">
@@ -28,6 +31,15 @@
         </div>
       </div>
     </div>
+    <div class="row font-weight-bold">
+      <div class="col-md-1 col-sm-2">SMA:</div>
+      <div v-for="sma in ticker.sma" :key="sma.day" class="col-md-2">
+        <div class="row">
+          <div v-text="sma.day + ':'" class="col-md-6 col-sm-6 text-right"/>
+          <div v-text="sma.price" :class="sma.direction" class="col-md-6 col-sm-6 text-left"/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,7 +52,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this);
     this.getTicker();
     setInterval(() => {
       this.getTicker();

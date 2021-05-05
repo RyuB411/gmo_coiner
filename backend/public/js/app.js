@@ -1985,6 +1985,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ticker-component',
   data: function data() {
@@ -1995,7 +2007,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this = this;
 
-    console.log(this);
     this.getTicker();
     setInterval(function () {
       _this.getTicker();
@@ -2037,6 +2048,120 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TickerList.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TickerList.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'ticker-list',
+  data: function data() {
+    return {
+      ticker: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.getTicker();
+    setInterval(function () {
+      _this.getTicker();
+    }, 10000);
+  },
+  methods: {
+    getTicker: function getTicker() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var ret;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return window.axios.get('/api/ticker/ALL');
+
+              case 2:
+                ret = _context.sent;
+                _this2.ticker = ret.data;
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -2063,6 +2188,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 Vue.component('candlestick-component', __webpack_require__(/*! ./components/CandlestickChart.vue */ "./resources/js/components/CandlestickChart.vue").default);
 Vue.component('ticker-component', __webpack_require__(/*! ./components/Ticker.vue */ "./resources/js/components/Ticker.vue").default);
+Vue.component('ticker-list', __webpack_require__(/*! ./components/TickerList.vue */ "./resources/js/components/TickerList.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -76848,6 +76974,45 @@ component.options.__file = "resources/js/components/Ticker.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/TickerList.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/TickerList.vue ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TickerList_vue_vue_type_template_id_aea9f91a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TickerList.vue?vue&type=template&id=aea9f91a& */ "./resources/js/components/TickerList.vue?vue&type=template&id=aea9f91a&");
+/* harmony import */ var _TickerList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TickerList.vue?vue&type=script&lang=js& */ "./resources/js/components/TickerList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _TickerList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _TickerList_vue_vue_type_template_id_aea9f91a___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TickerList_vue_vue_type_template_id_aea9f91a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TickerList.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/CandlestickChart.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/CandlestickChart.vue?vue&type=script&lang=js& ***!
@@ -76877,6 +77042,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Ticker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Ticker.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Ticker.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Ticker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TickerList.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/TickerList.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TickerList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TickerList.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -76910,6 +77091,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Ticker_vue_vue_type_template_id_1220f796___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Ticker_vue_vue_type_template_id_1220f796___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Ticker.vue?vue&type=template&id=1220f796& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Ticker.vue?vue&type=template&id=1220f796&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TickerList.vue?vue&type=template&id=aea9f91a&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/TickerList.vue?vue&type=template&id=aea9f91a& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerList_vue_vue_type_template_id_aea9f91a___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerList_vue_vue_type_template_id_aea9f91a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerList_vue_vue_type_template_id_aea9f91a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TickerList.vue?vue&type=template&id=aea9f91a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TickerList.vue?vue&type=template&id=aea9f91a&");
 
 
 /***/ }),
@@ -76965,7 +77163,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container border" }, [
-    _c("h1", { domProps: { textContent: _vm._s(_vm.ticker.symbol) } }),
+    _c("div", { staticClass: "row" }, [
+      _c("img", {
+        staticClass: "img-circle",
+        attrs: {
+          src: "/img/" + _vm.ticker.symbol + ".jpg",
+          width: "48",
+          height: "48"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", {
+        staticClass: "h1",
+        domProps: { textContent: _vm._s(_vm.ticker.symbol) }
+      })
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "h1 font-weight-bold text-center" }, [
       _vm._v(_vm._s(_vm.ticker.close))
@@ -77031,7 +77243,173 @@ var render = function() {
           })
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row font-weight-bold" },
+      [
+        _c("div", { staticClass: "col-md-1 col-sm-2" }, [_vm._v("SMA:")]),
+        _vm._v(" "),
+        _vm._l(_vm.ticker.sma, function(sma) {
+          return _c("div", { key: sma.day, staticClass: "col-md-2" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", {
+                staticClass: "col-md-6 col-sm-6 text-right",
+                domProps: { textContent: _vm._s(sma.day + ":") }
+              }),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "col-md-6 col-sm-6 text-left",
+                class: sma.direction,
+                domProps: { textContent: _vm._s(sma.price) }
+              })
+            ])
+          ])
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TickerList.vue?vue&type=template&id=aea9f91a&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TickerList.vue?vue&type=template&id=aea9f91a& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.ticker, function(ticker) {
+        return _c(
+          "div",
+          { key: ticker.symbol, staticClass: "col-md-2 col-sm-4 border" },
+          [
+            _c(
+              "a",
+              { attrs: { href: "/chart/" + ticker.symbol } },
+              [
+                _c("div", { staticClass: "row d-flex align-items-center" }, [
+                  _c("img", {
+                    staticClass: "img-circle",
+                    attrs: {
+                      src: "/img/" + ticker.symbol + ".jpg",
+                      width: "32",
+                      height: "32"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "h3",
+                    domProps: { textContent: _vm._s(ticker.symbol) }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "h4 font-weight-bold text-center" }, [
+                  _vm._v(_vm._s(ticker.close))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "h6 font-weight-bold text-center",
+                    class: ticker.after_direction_text
+                  },
+                  [
+                    _c("div", [_vm._v(_vm._s(ticker.after_day_value))]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v("（" + _vm._s(ticker.after_day_ratio) + "％）")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", {
+                    staticClass: "col-6 font-weight-bold text-danger text-left",
+                    domProps: { textContent: _vm._s(ticker.low) }
+                  }),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass:
+                      "col-6 font-weight-bold text-success text-right",
+                    domProps: { textContent: _vm._s(ticker.high) }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col" }, [
+                    _c("div", { staticClass: "progress" }, [
+                      _c("div", {
+                        staticClass: "progress-bar",
+                        staticStyle: { "background-color": "#e9ecef" },
+                        style: { width: ticker.ratio_from },
+                        attrs: {
+                          role: "progressbar",
+                          "aria-valuenow": ticker.close,
+                          "aria-valuemin": ticker.low,
+                          "aria-valuemax": ticker.high
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "progress-bar progress-bar-striped",
+                        class: ticker.after_direction_bg,
+                        style: { width: ticker.ratio_to },
+                        attrs: {
+                          role: "progressbar",
+                          "aria-valuenow": ticker.close,
+                          "aria-valuemin": ticker.low,
+                          "aria-valuemax": ticker.high
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._l(ticker.sma, function(sma) {
+                  return _c("div", { key: sma.day }, [
+                    _c("div", { staticClass: "row small" }, [
+                      _c("div", {
+                        staticClass: "col-6 text-right",
+                        domProps: { textContent: _vm._s(sma.day + "SMA:") }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "col-6 text-left",
+                        class: sma.direction,
+                        domProps: { textContent: _vm._s(sma.price) }
+                      })
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ]
+        )
+      }),
+      0
+    )
   ])
 }
 var staticRenderFns = []
