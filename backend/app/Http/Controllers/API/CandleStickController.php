@@ -36,7 +36,17 @@ class CandleStickController extends Controller
         return $post_data->toArray();
     }
 
-    public function ticker($symbol='BTC') {
+    public function ticker($symbol = 'ALL') {
+        if ($symbol == 'ALL') {
+            return config('const.CRYPT.SYMBOL_LIST')->map(function($symbol) {
+                return $this->getTickerInfo($symbol);
+            });
+        } else {
+            return $this->getTickerInfo($symbol);
+        }
+    }
+
+    private function getTickerInfo($symbol) {
         $client = new Client();
         $url_base = sprintf('%s%s', config('app.gmo.public_url'), 'v1/klines');
 
@@ -66,20 +76,38 @@ class CandleStickController extends Controller
 
             $after_day_ratio = ($today_data['close'] / $before_close - 1) * 100;
 
+            $today_data['sma'] = collect([7, 20, 60])->mapWithKeys(function($day) use ($data, $today_data) {
+                $result = [];
+                $result['day'] = $day;
+                $price = round($data->sortDesc()->take($day)->average('close'), 3);
+                $result['price'] = $price >= 1000 ? number_format($price) : $price;
+                $result['direction'] = $price > $today_data['close'] ? 'text-danger' : 'text-success';
+                return [(string)$day => $result];
+            })->toArray();
             $today_data['symbol'] = $symbol;
+
+            $after_day_value = round($today_data['close'] - $before_close, 3);
+            $after_day_value = abs($after_day_value) >= 1000 ? number_format($after_day_value) : $after_day_value;
             $today_data['after_day_ratio'] = sprintf('%.2f', $after_day_ratio);
-            $today_data['after_day_value'] = sprintf('%.2f', $today_data['close'] - $before_close);
+            $today_data['after_day_value'] = sprintf('%s', $after_day_value);
 
             if ($diff_hb > $diff_hc) {
                 $today_data['ratio_from'] = sprintf('%d%%', ($diff_hc / $diff_hl) * 100);
-                $today_data['ratio_to'] = sprintf('%d%%', (($diff_hb - $diff_hc) / $diff_hl) * 100);
+                $ratio_to = ($diff_hb - $diff_hc) / $diff_hl * 100;
+                $ratio_to = $ratio_to < 1 ? 1 : $ratio_to;
+                $today_data['ratio_to'] = sprintf('%d%%', $ratio_to);
                 $today_data['after_direction_text'] = 'text-danger';
                 $today_data['after_direction_bg'] = 'bg-danger';
             } else {
                 $today_data['ratio_from'] = sprintf('%d%%', ($diff_hb / $diff_hl) * 100);
-                $today_data['ratio_to'] = sprintf('%u%%', (($diff_hc - $diff_hb) / $diff_hl) * 100);
+                $ratio_to = ($diff_hc - $diff_hb) / $diff_hl * 100;
+                $ratio_to = $ratio_to < 1 ? 1 : $ratio_to;
+                $today_data['ratio_to'] = sprintf('%u%%', $ratio_to);
                 $today_data['after_direction_text'] = 'text-success';
                 $today_data['after_direction_bg'] = 'bg-success';
+            }
+            if ($today_data['close'] >= 1000) {
+                $today_data['close'] =  number_format($today_data['close']);
             }
             return $today_data;
         } catch (ClientException $e) {

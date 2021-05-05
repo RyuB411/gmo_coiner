@@ -28,8 +28,6 @@ class GetKline extends Command
     private $interval;
     private $date;
     private $url_base;
-    private $interval_day_list;
-    private $interval_year_list;
 
     /**
      * Create a new command instance.
@@ -41,24 +39,6 @@ class GetKline extends Command
         parent::__construct();
         
         $this->client = new Client();
-
-        $this->interval_day_list = collect([
-            // '1min',
-            // '5min',
-            '10min',
-            // '15min',
-            '30min',
-            '1hour',
-        ]);
-        $this->interval_year_list = collect([
-            '4hour',
-            '8hour',
-            '12hour',
-            '1day',
-            '1week',
-            '1month',
-        ]);
-
         $this->url_base = sprintf('%s%s', config('app.gmo.public_url'), 'v1/klines');
     }
 
@@ -80,7 +60,7 @@ class GetKline extends Command
         if ($this->argument('date')) {
             $this->date = $this->argument('date');
         } else {
-            if ($this->interval_day_list->contains($this->interval)) {
+            if (config('const.CRYPT.INTERVAL_LIST.DAILY')->contains($this->interval)) {
                 $this->date = today()->format('Ymd');
             } else {
                 $this->date = today()->format('Y');
@@ -138,7 +118,7 @@ class GetKline extends Command
     }
 
     private function firstCreate() {
-        $this->interval_year_list->each(function ($interval) {
+        config('const.CRYPT.INTERVAL_LIST.YEAR')->each(function ($interval) {
             // 最も古い通貨で2018年から取り扱い開始
             $date = Carbon::parse('2018-01-01');
             while (!$date->isFuture()) {
@@ -146,7 +126,7 @@ class GetKline extends Command
                 $date->addYear();
             }
         });
-        $this->interval_day_list->each(function ($interval) {
+        config('const.CRYPT.INTERVAL_LIST.DAILY')->each(function ($interval) {
             // 2021/4/15から日単位集計開始
             $date = Carbon::parse('2021-04-15');
             while (!$date->isFuture()) {
