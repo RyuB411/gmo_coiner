@@ -17,3 +17,7 @@ a:active {
 body{ 
     padding-top: 60px; 
 }
+news-component{
+    height:60vh;
+    overflow:scroll;
+}
