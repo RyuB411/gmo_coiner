@@ -24,7 +24,19 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        config('const.CRYPT.SYMBOL_LIST')->each(function($symbol) use ($schedule) {
+            config('const.CRYPT.INTERVAL_LIST.DAILY')->each(function($interval) use ($schedule, $symbol) {
+                $schedule->command(sprintf('%s %s %s %s', 'gmoapi:getkline', $symbol, today()->format('Ymd'), $interval))
+                    ->everyTenMinutes();
+            });
+
+            config('const.CRYPT.INTERVAL_LIST.YEAR')->each(function($interval) use ($schedule, $symbol) {
+                $schedule->command(sprintf('%s %s %s %s', 'gmoapi:getkline', $symbol, today()->format('Y'), $interval))
+                    ->cron('0 1,5,9,13,17,21 * * *');
+            });
+        });
+
+        $schedule->command('slack:notification')->cron('0 1,5,9,13,17,21 * * *');
     }
 
     /**
