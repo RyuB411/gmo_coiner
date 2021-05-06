@@ -22,6 +22,7 @@ window.Vue = require('vue').default;
 Vue.component('candlestick-component', require('./components/CandlestickChart.vue').default);
 Vue.component('ticker-component', require('./components/Ticker.vue').default);
 Vue.component('ticker-list', require('./components/TickerList.vue').default);
+Vue.component('news-component', require('./components/NewsComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1,6 +1,6 @@
 <!-- https://github.com/ehajri/vue-chartjs-financial/blob/master/src/views/Candlestick.vue -->
 <template>
-  <div class="border">
+  <div class="container border">
     <Candlestick :chart-data="datacollection" :options="options" />
   </div>
 </template>
