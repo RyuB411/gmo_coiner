@@ -1,4 +1,5 @@
 # gmo_coiner
+![image](https://user-images.githubusercontent.com/39729800/117288490-84c15900-aea6-11eb-99f1-d37203c8053f.png)
 
 # Requirement
 docker desktop  
