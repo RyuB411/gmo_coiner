@@ -139,6 +139,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        App\Providers\SlackServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -165,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Weidner\Goutte\GoutteServiceProvider::class, 
 
         /*
          * Application Service Providers...
@@ -207,6 +209,7 @@ return [
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
+        'Goutte' => Weidner\Goutte\GoutteFacade::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Http' => Illuminate\Support\Facades\Http::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
@@ -222,6 +225,7 @@ return [
         'Route' => Illuminate\Support\Facades\Route::class,
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
+        'Slack' => App\Services\Slack\SlackFacade::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
@@ -230,4 +234,10 @@ return [
 
     ],
 
+    'gmo' => [
+        'public_url' => env('GMO_COIN_API_BASE_URL_PUBLIC'),
+        'public_socket' => env('GMO_COIN_API_WEB_SOCKET_PUBLIC'),
+        'private_url' => env('GMO_COIN_API_BASE_URL_PRIVATE'),
+        'private_socket' => env('GMO_COIN_API_WEB_SOCKET_PRIVATE'),
+    ],
 ];
