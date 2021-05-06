@@ -14,7 +14,15 @@
     <body class="antialiased">
         @include('navbar')
         <div id="app">
-            <ticker-list></ticker-list>
+            <ticker-list class="py-2"></ticker-list>
+            <div class="container  py-2">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">News</a>
+                    </li>
+                </ul>
+            </div>
+            <news-component class="bg-light" style="height: 60vh; overflow: visible scroll;"></news-component>
         </div>
         <script src=" {{ mix('js/app.js') }}" ></script>
     </body>

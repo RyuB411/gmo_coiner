@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CandleStickController;
+use App\Http\Controllers\API\NewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/candle_stick/{symbol}', [CandleStickController::class, 'index']);
 
 Route::get('/ticker/{symbol}', [CandleStickController::class, 'ticker']);
+
+Route::get('/news', [NewsController::class, 'index']);
