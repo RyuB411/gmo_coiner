@@ -10,8 +10,9 @@ use GuzzleHttp\Exception\ClientException;
 
 class CandleStickController extends Controller
 {
-    public function index($symbol, $interval='1hour') {
-        $post_data = CandleStick::
+    public function index($symbol, $interval='1hour', $limit=180) {
+        $post_data = collect(
+            CandleStick::
             where('symbol', $symbol)
             ->where('interval', $interval)
             ->select(
@@ -19,21 +20,58 @@ class CandleStickController extends Controller
                 'high_price',
                 'low_price',
                 'close_price',
-                'open_time'
+                'open_time',
+                'volume'
             )
             ->orderBy('open_time', 'desc')
-            ->limit(120)
+            ->limit($limit)
             ->get()
             ->map(function ($data) {
-                return (object) [
+                return [
                     'o' => (float)$data->open_price,
                     'h' => (float)$data->high_price,
                     'l' => (float)$data->low_price,
                     'c' => (float)$data->close_price,
-                    't' => Carbon::parse($data->open_time)->getTimestamp() * 1000
+                    't' => Carbon::parse($data->open_time)->getTimestamp() * 1000,
+                    'v' => (float)$data->volume,
                 ];
+            })
+        );
+
+        $sma = collect([7, 20, 60])->mapWithKeys(function ($day) use ($post_data) {
+            $result = $post_data->map(function ($data) use ($day, $post_data) {
+                $diff = $post_data->where('t', '<=', $data['t'])->take($day);
+                if ($diff->count() != $day) {
+                    return null;
+                }
+                    
+                return 
+                (object)[
+                    'y' => round($diff->average('c'), 3),
+                    'x' => $data['t'],
+                ];
+            })
+            ->reject(function ($data) {
+                return empty($data);
             });
-        return $post_data->toArray();
+            return [(string)$day => $result];
+        });
+        $price_min = $post_data->min('l');
+        $volume_display_max = ($price_min + $price_min / 10);
+        $volume_display_min = ($price_min - $price_min / 10);
+        $volume_max = $post_data->max('v');
+        $volume = $post_data->map(function ($data) use ($volume_max, $volume_display_max, $volume_display_min) {
+            $volume =  $volume_display_min + $data['v'] / $volume_max * ($volume_display_max - $volume_display_min);
+            return (object)[
+                'y' => $volume,
+                'x' => $data['t'],
+            ];
+        });
+        return [
+            'ohlc' => $post_data->map(function($data){ return (object)$data; })->toArray(),
+            'sma' => $sma->toArray(),
+            'volume' => $volume
+        ];
     }
 
     public function ticker($symbol = 'ALL') {
